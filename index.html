@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agenda tu cita</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>BARBERÍA NOVA</h1>
+
+        <p>Agenda tu cita</p>
+
+        <form id="formularioCita">
+
+            <label>Nombre</label>
+
+            <input
+                type="text"
+                id="nombre"
+                placeholder="Tu nombre"
+                required
+            >
+
+            <label>Servicio</label>
+
+            <select id="servicio" required>
+
+                <option value="">
+                    Selecciona un servicio
+                </option>
+
+                <option value="Corte">
+                    Corte - $200
+                </option>
+
+                <option value="Corte y barba">
+                    Corte + barba - $300
+                </option>
+
+                <option value="Barba">
+                    Barba - $150
+                </option>
+
+            </select>
+
+            <label>Fecha</label>
+
+            <input
+                type="date"
+                id="fecha"
+                required
+            >
+
+            <label>Horario</label>
+
+            <select id="hora" required>
+
+                <option value="">
+                    Selecciona horario
+                </option>
+
+                <option value="10:00">
+                    10:00 AM
+                </option>
+
+                <option value="11:00">
+                    11:00 AM
+                </option>
+
+                <option value="12:00">
+                    12:00 PM
+                </option>
+
+                <option value="13:00">
+                    1:00 PM
+                </option>
+
+                <option value="14:00">
+                    2:00 PM
+                </option>
+
+                <option value="15:00">
+                    3:00 PM
+                </option>
+
+                <option value="16:00">
+                    4:00 PM
+                </option>
+
+                <option value="17:00">
+                    5:00 PM
+                </option>
+
+            </select>
+
+            <button type="submit">
+                Reservar cita
+            </button>
+
+        </form>
+
+        <p id="mensaje"></p>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
