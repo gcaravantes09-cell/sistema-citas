@@ -2,15 +2,12 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Agenda tu cita</title>
+    <title>Barbería Nova | Reservar cita</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -19,103 +16,90 @@
 
         <h1>BARBERÍA NOVA</h1>
 
-        <p>Agenda tu cita</p>
+        <p class="subtitulo">
+            Reserva tu cita
+        </p>
 
         <form id="formularioCita">
 
-            <label>Nombre</label>
-
+            <!-- Nombre -->
+            <label for="nombre">Nombre</label>
             <input
                 type="text"
                 id="nombre"
-                placeholder="Tu nombre"
+                placeholder="Escribe tu nombre"
                 required
             >
 
-            <label>Servicio</label>
-
+            <!-- Servicio -->
+            <label for="servicio">Servicio</label>
             <select id="servicio" required>
 
-                <option value="">
-                    Selecciona un servicio
-                </option>
+                <option value="">Selecciona un servicio</option>
 
-                <option value="Corte">
+                <option value="Corte - $200">
                     Corte - $200
                 </option>
 
-                <option value="Corte y barba">
+                <option value="Corte + barba - $300">
                     Corte + barba - $300
                 </option>
 
-                <option value="Barba">
+                <option value="Barba - $150">
                     Barba - $150
                 </option>
 
             </select>
 
-            <label>Fecha</label>
-
+            <!-- Fecha -->
+            <label for="fecha">Fecha</label>
             <input
                 type="date"
                 id="fecha"
                 required
             >
 
-            <label>Horario</label>
-
+            <!-- Hora -->
+            <label for="hora">Hora</label>
             <select id="hora" required>
 
-                <option value="">
-                    Selecciona horario
-                </option>
+                <option value="">Selecciona una hora</option>
 
-                <option value="10:00">
-                    10:00 AM
-                </option>
-
-                <option value="11:00">
-                    11:00 AM
-                </option>
-
-                <option value="12:00">
-                    12:00 PM
-                </option>
-
-                <option value="13:00">
-                    1:00 PM
-                </option>
-
-                <option value="14:00">
-                    2:00 PM
-                </option>
-
-                <option value="15:00">
-                    3:00 PM
-                </option>
-
-                <option value="16:00">
-                    4:00 PM
-                </option>
-
-                <option value="17:00">
-                    5:00 PM
-                </option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
 
             </select>
 
+            <!-- Botón -->
             <button type="submit">
                 Reservar cita
             </button>
 
-        </form>
+            <!--
+                IMPORTANTE:
+                Este espacio empieza vacío.
+                JavaScript pondrá aquí el mensaje
+                cuando se mande la cita.
+            -->
+            <p id="mensaje"></p>
 
-        <p id="mensaje"></p>
+        </form>
 
     </div>
 
+    <!-- Conectamos nuestro JavaScript -->
     <script src="script.js"></script>
 
 </body>
 
 </html>
+
+
+
+

@@ -1,37 +1,70 @@
-const formulario =
-    document.getElementById("formularioCita");
+const formulario = document.getElementById("formularioCita");
 
+formulario.addEventListener("submit", async function(event) {
 
-formulario.addEventListener("submit", function(event) {
-
+    // Evita que la página se recargue antes de enviar la cita
     event.preventDefault();
 
+    // Obtenemos los datos del formulario
+    const nombre = document.getElementById("nombre").value;
+    const servicio = document.getElementById("servicio").value;
+    const fecha = document.getElementById("fecha").value;
+    const hora = document.getElementById("hora").value;
 
-    const nombre =
-        document.getElementById("nombre").value;
+    // Creamos la cita
+    const cita = {
+        nombre: nombre,
+        servicio: servicio,
+        fecha: fecha,
+        hora: hora
+    };
 
-    const servicio =
-        document.getElementById("servicio").value;
+    try {
 
-    const fecha =
-        document.getElementById("fecha").value;
+        // Enviamos los datos a Make
+        const respuesta = await fetch(
+            "https://hook.us2.make.com/ircggvlpw9ciwmy4bak9n6fu55qr7o6q",
+            {
+                method: "POST",
 
-    const hora =
-        document.getElementById("hora").value;
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
+                body: JSON.stringify(cita)
+            }
+        );
 
-    console.log("Nueva cita");
+        if (respuesta.ok) {
 
-    console.log("Nombre:", nombre);
+            // Mostramos que la cita se envió correctamente
+            document.getElementById("mensaje").textContent =
+                "✓ Cita enviada correctamente";
 
-    console.log("Servicio:", servicio);
+            // Limpiamos los campos
+            formulario.reset();
 
-    console.log("Fecha:", fecha);
+            // Esperamos 2 segundos y recargamos la página
+            setTimeout(function() {
+                window.location.reload();
+            }, 2000);
 
-    console.log("Hora:", hora);
+        } else {
 
+            document.getElementById("mensaje").textContent =
+                "Hubo un problema al reservar.";
 
-    document.getElementById("mensaje").textContent =
-        "✓ Solicitud recibida";
+        }
+
+    } catch (error) {
+
+        document.getElementById("mensaje").textContent =
+            "No se pudo conectar con el sistema.";
+
+        console.error("Error:", error);
+    }
 
 });
+
+
+   
