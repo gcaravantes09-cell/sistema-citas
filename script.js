@@ -1,17 +1,15 @@
+
 const formulario = document.getElementById("formularioCita");
 
 formulario.addEventListener("submit", async function(event) {
 
-    // Evita que la página se recargue antes de enviar la cita
     event.preventDefault();
 
-    // Obtenemos los datos del formulario
     const nombre = document.getElementById("nombre").value;
     const servicio = document.getElementById("servicio").value;
     const fecha = document.getElementById("fecha").value;
     const hora = document.getElementById("hora").value;
 
-    // Creamos la cita
     const cita = {
         nombre: nombre,
         servicio: servicio,
@@ -19,52 +17,48 @@ formulario.addEventListener("submit", async function(event) {
         hora: hora
     };
 
+    const mensaje = document.getElementById("mensaje");
+
     try {
 
-        // Enviamos los datos a Make
         const respuesta = await fetch(
             "https://hook.us2.make.com/ircggvlpw9ciwmy4bak9n6fu55qr7o6q",
             {
                 method: "POST",
-
                 headers: {
                     "Content-Type": "application/json"
                 },
-
                 body: JSON.stringify(cita)
             }
         );
 
-        if (respuesta.ok) {
+        const resultado = await respuesta.json();
 
-            // Mostramos que la cita se envió correctamente
-            document.getElementById("mensaje").textContent =
-                "✓ Cita enviada correctamente";
+        if (respuesta.ok && resultado.success === true) {
 
-            // Limpiamos los campos
+            mensaje.textContent = "✓ Cita reservada correctamente";
+
             formulario.reset();
 
-            // Esperamos 2 segundos y recargamos la página
-            setTimeout(function() {
-                window.location.reload();
-            }, 2000);
+        } else if (respuesta.status === 409) {
+
+            mensaje.textContent =
+                "⚠ Este horario ya está reservado. Selecciona otro.";
 
         } else {
 
-            document.getElementById("mensaje").textContent =
-                "Hubo un problema al reservar.";
+            mensaje.textContent =
+                "Hubo un problema al reservar. Intenta nuevamente.";
 
         }
 
     } catch (error) {
 
-        document.getElementById("mensaje").textContent =
+        mensaje.textContent =
             "No se pudo conectar con el sistema.";
 
         console.error("Error:", error);
+
     }
 
 });
-
-
-   
